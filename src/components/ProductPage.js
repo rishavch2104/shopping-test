@@ -21,9 +21,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const ProductPage = props => {
+  const { id } = props;
   const classes = useStyles();
 
-  const item = shoppingItems[props.name];
+  const item = shoppingItems[id - 1];
 
   const handleRemoveItem = () => {
     alert("Remove");
