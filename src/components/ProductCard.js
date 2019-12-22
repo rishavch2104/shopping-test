@@ -9,17 +9,21 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const useStyles = makeStyles({
   card: {
     maxWidth: 345
   },
   media: {
-    height: 140
+    width: "100%",
+    height: "300px"
   }
 });
 const ProductCard = props => {
-  const { name, price, id, history } = props;
+  const { name, dispPrice, id, history, image } = props;
   const classes = useStyles();
 
   const handleDetailClicked = () => {
@@ -29,8 +33,9 @@ const ProductCard = props => {
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
+          component="img"
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={image}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -38,18 +43,20 @@ const ProductCard = props => {
             {name}
           </Typography>
 
-          <Typography variant="h6">{price}</Typography>
+          <Typography variant="h6">{dispPrice}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <ButtonGroup color="primary">
-          <Button size="small" color="primary" onClick={handleDetailClicked}>
-            View Details
-          </Button>
-          <Button size="small" color="primary">
-            Add to Cart
-          </Button>
-        </ButtonGroup>
+        <Button size="small" color="primary" onClick={handleDetailClicked}>
+          View Details
+        </Button>
+        <IconButton
+          style={{ marginLeft: "auto" }}
+          color="primary"
+          aria-label="add to shopping cart"
+        >
+          <AddShoppingCartIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );

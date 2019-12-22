@@ -1,7 +1,9 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import List from "@material-ui/core/List";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItem from "@material-ui/core/ListItem";
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,21 +12,21 @@ import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { shoppingItems } from "./../shoppingItems";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
+  image: {
+    width: "100%",
+    height: "auto"
   }
 }));
 const ProductPage = props => {
   const { id } = props;
   const classes = useStyles();
 
-  const item = shoppingItems[id - 1];
+  const item = shoppingItems[id];
 
   const handleRemoveItem = () => {
     alert("Remove");
@@ -34,7 +36,7 @@ const ProductPage = props => {
     <Container fixed style={{ marginTop: "30px" }}>
       <Grid container spacing={7}>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>xs</Paper>
+          <img className={classes.image} src={item.image} alt="phone"></img>
         </Grid>
         <Grid item xs={8}>
           <Box display="flex" flexDirection="column">
@@ -43,10 +45,15 @@ const ProductPage = props => {
             </Typography>
             <Divider />
             <Typography variant="overline">Price</Typography>
-            <Typography variant="h4">{item.price}</Typography>
+            <Typography variant="h5">{item.dispPrice}</Typography>
             <Divider />
             <Typography variant="overline">Description</Typography>
             <Typography variant="body2">{item.description}</Typography>
+            <Divider />
+            <Typography variant="overline">Features</Typography>
+            {item.features.map(feature => (
+              <Typography variant="body2">{feature}</Typography>
+            ))}
             <Divider />
             <Box mt="10px" display="flex" justifyContent="space-between">
               <Typography variant="button" display="inline">

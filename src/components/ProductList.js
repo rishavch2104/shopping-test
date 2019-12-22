@@ -20,7 +20,7 @@ const ProductList = () => {
 
   return (
     <div>
-      <Grid container spacing={3}>
+      <Grid style={{ marginTop: "10px" }} container spacing={3}>
         {shoppingItems.map(product => (
           <Grid item xs>
             <ProductCard {...product} />
