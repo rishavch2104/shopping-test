@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import List from "@material-ui/core/List";
 import CartItem from "./CartItem";
 import Typography from "@material-ui/core/Typography";
@@ -6,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
+
 import {
   CardActionArea,
   Card,
@@ -17,7 +18,11 @@ const initialCart = [
   { id: 1, quantity: 2 },
   { id: 0, quantity: 3 }
 ];
-const Cart = () => {
+const Cart = props => {
+  const { history } = props;
+  const handleOrderClicked = () => {
+    history.push("/completed");
+  };
   return (
     <Grid
       container
@@ -59,7 +64,9 @@ const Cart = () => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button variant="outlined">Place Order</Button>
+            <Button onClick={handleOrderClicked} variant="outlined">
+              Place Order
+            </Button>
           </CardActions>
         </Card>
       </Grid>
@@ -67,4 +74,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default withRouter(Cart);
