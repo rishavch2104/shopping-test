@@ -25,7 +25,7 @@ const Navbar = props => {
   const classes = useStyles();
 
   const handleCartClick = () => {
-    alert("Cart Clicked");
+    history.push("/cart");
   };
   const handleShopClicked = () => {
     history.push("/");
