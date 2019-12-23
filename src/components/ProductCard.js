@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -7,12 +8,13 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
+import { addItem } from "./../redux/cart/cart.actions";
 const useStyles = makeStyles({
   card: {
     maxWidth: 345
@@ -22,12 +24,15 @@ const useStyles = makeStyles({
     height: "300px"
   }
 });
-const ProductCard = props => {
-  const { name, dispPrice, id, history, image } = props;
+const ProductCard = ({ data, addItem }) => {
+  const { name, dispPrice, id, history, image } = data;
   const classes = useStyles();
 
   const handleDetailClicked = () => {
     history.push(`/product/${id}`);
+  };
+  const handleAddItem = () => {
+    addItem(data);
   };
   return (
     <Card className={classes.card}>
@@ -51,6 +56,7 @@ const ProductCard = props => {
           View Details
         </Button>
         <IconButton
+          onClick={handleAddItem}
           style={{ marginLeft: "auto" }}
           color="primary"
           aria-label="add to shopping cart"
@@ -61,5 +67,8 @@ const ProductCard = props => {
     </Card>
   );
 };
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item))
+});
 
-export default withRouter(ProductCard);
+export default connect(null, mapDispatchToProps)(withRouter(ProductCard));

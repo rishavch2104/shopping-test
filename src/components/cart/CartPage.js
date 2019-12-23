@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import List from "@material-ui/core/List";
 import CartItem from "./CartItem";
@@ -74,4 +75,7 @@ const Cart = props => {
   );
 };
 
-export default withRouter(Cart);
+const mapStatetoProps = state => ({
+  items: state.cart.cartItems
+});
+export default connect(mapStatetoProps, null)(withRouter(Cart));
