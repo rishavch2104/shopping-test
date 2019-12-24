@@ -23,6 +23,11 @@ const Cart = props => {
     history.push("/completed");
   };
 
+  const total = items.reduce(
+    (accumalatedQuantity, cartItem) =>
+      accumalatedQuantity + cartItem.quantity * cartItem.price,
+    0
+  );
   return (
     <Container>
       <Grid container spacing={4} style={{ marginTop: "10px" }}>
@@ -44,7 +49,7 @@ const Cart = props => {
 
           {items.map(item => (
             <>
-              <CartItem {...item} />
+              <CartItem cartitem={item} />
               <Divider />
             </>
           ))}
@@ -56,7 +61,7 @@ const Cart = props => {
                 <Typography variant="h6" gutterBottom>
                   Total Amount
                 </Typography>
-                <Typography variant="subtitle1">2000</Typography>
+                <Typography variant="subtitle1">{total}</Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>

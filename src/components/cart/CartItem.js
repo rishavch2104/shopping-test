@@ -14,13 +14,20 @@ import {
 } from "./../../redux/cart/cart.actions";
 import DeleteIcon from "@material-ui/icons/Delete";
 const CartItem = props => {
-  const { id, quantity, clearItem, addItem, removeItem } = props;
+  const { cartitem, clearItem, addItem, removeItem } = props;
+  const { id, quantity } = cartitem;
   const item = shoppingItems[id];
+  const handleAddItem = () => {
+    addItem({ ...cartitem, quantity: 1 });
+  };
+  const handleDecreaseItem = () => {
+    removeItem(cartitem);
+  };
   return (
     <Box display="flex">
       <Box width="10%">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={item.image} />
+          {/* <Avatar alt="Remy Sharp" src={item.image} /> */}
         </ListItemAvatar>
       </Box>
       <Box width="50%">
@@ -34,10 +41,10 @@ const CartItem = props => {
           flexDirection="row"
           width="100%"
         >
-          <RemoveIcon onClick={() => removeItem(item)} />
+          <RemoveIcon onClick={handleDecreaseItem} />
           <Typography display="inline">{quantity}</Typography>
-          <AddIcon onClick={() => addItem(item)} />
-          <DeleteIcon onClick={() => clearItem(item)} />
+          <AddIcon onClick={handleAddItem} />
+          <DeleteIcon onClick={() => clearItem(cartitem)} />
         </Box>
       </Box>
 
