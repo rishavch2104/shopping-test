@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "./ProductCard";
 import { shoppingItems } from "./../shoppingItems";
@@ -19,7 +19,7 @@ const ProductList = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <Container>
       <Grid style={{ marginTop: "10px" }} container spacing={3}>
         {shoppingItems.map(product => (
           <Grid item xs>
@@ -27,7 +27,7 @@ const ProductList = () => {
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Container>
   );
 };
 
