@@ -24,15 +24,15 @@ const useStyles = makeStyles({
     height: "300px"
   }
 });
-const ProductCard = ({ data, addItem }) => {
-  const { name, dispPrice, id, history, image } = data;
+const ProductCard = ({ data, addItem, history }) => {
+  const { name, dispPrice, id, image } = data;
   const classes = useStyles();
 
   const handleDetailClicked = () => {
     history.push(`/product/${id}`);
   };
   const handleAddItem = () => {
-    addItem(data);
+    addItem({ ...data, quantity: 1 });
   };
   return (
     <Card className={classes.card}>

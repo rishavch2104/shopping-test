@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import CartItem from "./CartItem";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
+
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 
@@ -16,10 +16,7 @@ import {
   CardActions,
   CardContent
 } from "@material-ui/core";
-const initialCart = [
-  { id: 1, quantity: 2 },
-  { id: 0, quantity: 3 }
-];
+
 const Cart = props => {
   const { history, items } = props;
   const handleOrderClicked = () => {
@@ -48,6 +45,7 @@ const Cart = props => {
           {items.map(item => (
             <>
               <CartItem {...item} />
+              <Divider />
             </>
           ))}
         </Grid>
