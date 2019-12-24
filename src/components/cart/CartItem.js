@@ -27,7 +27,7 @@ const CartItem = props => {
     <Box display="flex">
       <Box width="10%">
         <ListItemAvatar>
-          {/* <Avatar alt="Remy Sharp" src={item.image} /> */}
+          <Avatar alt="Remy Sharp" src={item.image} />
         </ListItemAvatar>
       </Box>
       <Box width="50%">
