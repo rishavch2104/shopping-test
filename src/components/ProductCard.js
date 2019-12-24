@@ -33,6 +33,7 @@ const ProductCard = ({ data, addItem, history }) => {
   };
   const handleAddItem = () => {
     addItem({ ...data, quantity: 1 });
+    alert(`${name} added to cart`);
   };
   return (
     <Card className={classes.card}>

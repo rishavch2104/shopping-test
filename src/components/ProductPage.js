@@ -35,6 +35,7 @@ const ProductPage = ({ addItem, id }) => {
   };
   const handleAddItemToCart = () => {
     addItem({ ...item, quantity: quantity_local });
+    alert(`${quantity_local} pieces of ${item.name} added to cart!`);
   };
   return (
     <Container fixed style={{ marginTop: "30px" }}>
