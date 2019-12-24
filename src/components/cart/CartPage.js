@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
@@ -28,6 +28,10 @@ const Cart = props => {
       accumalatedQuantity + cartItem.quantity * cartItem.price,
     0
   );
+
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
   return (
     <Container>
       <Grid container spacing={4} style={{ marginTop: "10px" }}>
